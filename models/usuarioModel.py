@@ -1,4 +1,4 @@
-from app import dbSetting
+from app import dbSetting, BaseModel
 from utils.random import random_word
 from sha3 import sha3_512
 
@@ -6,7 +6,7 @@ db = dbSetting.db
 
 
 # Modelo de usuario
-class Usuario(db.Model):
+class Usuario(BaseModel):
     __tablename__ = 'usuario'
     correo = db.Column(db.String, primary_key=True)
     nombre = db.Column(db.String, default='no_name')
@@ -15,6 +15,20 @@ class Usuario(db.Model):
     password = db.Column(db.String, default='password')
     salt = db.Column(db.String)
     fecha_nacimiento = db.Column(db.Integer)
+
+    _default_fields = [
+        "correo",
+        "nombre",
+        "ap_paterno",
+        "ap_materno",
+        "salt",
+        "fecha_nacimiento",
+    ]
+    _hidden_fields = [
+        "password",
+    ]
+    _readonly_fields = [
+    ]
 
     @staticmethod
     def new(correo: str, nombre: str, ap_paterno: str, ap_materno: str, password: str, fecha_nacimiento: int):
@@ -36,13 +50,13 @@ class Usuario(db.Model):
     def get_by_id(_id: str):
         values: [] = Usuario.query.filter_by(correo=_id).all()
         if len(values) == 0:
-            return []
+            return None
         return values[0]
 
     @staticmethod
     def update(_id: int, correo: str, nombre: str, ap_paterno: str, ap_materno: str, password: str,
                fecha_nacimiento: int):
-        user: Usuario = Usuario.get_user_by_id(_id)
+        user: Usuario = Usuario.get_by_id(_id)
         user.correo = correo
         user.nombre = nombre
         user.ap_paterno = ap_paterno
@@ -54,7 +68,7 @@ class Usuario(db.Model):
 
     @staticmethod
     def drop(_id: int):
-        user = Usuario.get_user_by_id(_id)
+        user: Usuario = Usuario.get_by_id(_id)
         db.session.delete(user)
         db.session.commit()
 
@@ -63,6 +77,3 @@ class Usuario(db.Model):
     def __generate_pass(_pass, _salt):
         salted_password: str = _pass + _salt
         return sha3_512(salted_password.encode('utf-8')).hexdigest()
-
-
-
