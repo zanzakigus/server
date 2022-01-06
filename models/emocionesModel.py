@@ -32,7 +32,7 @@ class Emocion(BaseModel):
         return values
 
     @staticmethod
-    def get_by_id(_id: str):
+    def get_by_id(_id: int):
         values: [] = Emocion.query.filter_by(id_emocion=_id).all()
         if len(values) == 0:
             return None

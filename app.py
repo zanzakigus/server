@@ -8,10 +8,12 @@ from models.baseModel import BaseModel
 from models.usuarioModel import Usuario
 from models.emocionesModel import Emocion
 from models.emocionesDetectadasModel import EmocionDetectada
+from models.estrategiasModel import Estrategia
 
 # import declared routes
 from routes import user
 from routes import emocion
+from routes import emocionDetectada
 
 @app.route('/')
 def hello_world():  # put application's code here

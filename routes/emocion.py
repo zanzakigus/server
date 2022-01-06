@@ -10,7 +10,7 @@ def new_emocion():
     payload: dict = request.get_json(force=True)
     emocion_texto = payload.get("emocion_texto")
     if emocion_texto is None:
-        return "Unable to get params: Expected json with emocion_texto)", 406
+        return "Unable to get params: Expected json with (emocion_texto)", 406
     Emocion.new(emocion_texto)
     object_to_return = {"resp": "exito"}
     return object_to_return, 200

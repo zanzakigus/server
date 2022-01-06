@@ -13,13 +13,13 @@ class EmocionDetectada(BaseModel):
     __tablename__ = 'emociones_detectadas'
     id_emocion = db.Column(db.Integer, ForeignKey('emociones.id_emocion'), primary_key=True)
     correo = db.Column(db.String, ForeignKey('usuario.correo'), primary_key=True)
-    emocion_texto = db.Column(db.String, default='no_name')
-
+    id_estrategia = db.Column(db.String, ForeignKey('estrategias.id_estrategia'), primary_key=True)
+    fecha_deteccion = db.Column(db.Integer, default=0)
 
     _default_fields = [
         "id_emocion",
         "correo",
-        "emocion_texto"
+        "fecha_deteccion"
     ]
     _hidden_fields = [
     ]
@@ -27,9 +27,8 @@ class EmocionDetectada(BaseModel):
     ]
 
     @staticmethod
-    def new(id_emocion: int, correo: str, emocion_texto: str):
-        emotion: EmocionDetectada = EmocionDetectada(id_emocion=id_emocion, correo=correo,
-                                                     emocion_texto=emocion_texto)
+    def new(id_emocion: int, correo: str, id_estrategia: int):
+        emotion: EmocionDetectada = EmocionDetectada(id_emocion=id_emocion, correo=correo, id_estrategia= id_estrategia)
         db.session.add(emotion)
         db.session.commit()
 
