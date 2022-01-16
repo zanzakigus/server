@@ -1,0 +1,592 @@
+[
+    {
+        "label": "dbSetting",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dbSetting",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Emocion",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dbSetting",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dbSetting",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dbSetting",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Emocion",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "EmocionDetectada",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "QueryableAttribute",
+        "importPath": "sqlalchemy.orm.attributes",
+        "description": "sqlalchemy.orm.attributes",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm.attributes",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "random_word",
+        "importPath": "utils.random",
+        "description": "utils.random",
+        "isExtraImport": true,
+        "detail": "utils.random",
+        "documentation": {}
+    },
+    {
+        "label": "sha3_512",
+        "importPath": "sha3",
+        "description": "sha3",
+        "isExtraImport": true,
+        "detail": "sha3",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "platform",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "platform",
+        "description": "platform",
+        "detail": "platform",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "dbSetting",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "models.baseModel",
+        "description": "models.baseModel",
+        "isExtraImport": true,
+        "detail": "models.baseModel",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "importPath": "models.usuarioModel",
+        "description": "models.usuarioModel",
+        "isExtraImport": true,
+        "detail": "models.usuarioModel",
+        "documentation": {}
+    },
+    {
+        "label": "Emocion",
+        "importPath": "models.emocionesModel",
+        "description": "models.emocionesModel",
+        "isExtraImport": true,
+        "detail": "models.emocionesModel",
+        "documentation": {}
+    },
+    {
+        "label": "EmocionDetectada",
+        "importPath": "models.emocionesDetectadasModel",
+        "description": "models.emocionesDetectadasModel",
+        "isExtraImport": true,
+        "detail": "models.emocionesDetectadasModel",
+        "documentation": {}
+    },
+    {
+        "label": "Estrategia",
+        "importPath": "models.estrategiasModel",
+        "description": "models.estrategiasModel",
+        "isExtraImport": true,
+        "detail": "models.estrategiasModel",
+        "documentation": {}
+    },
+    {
+        "label": "user",
+        "importPath": "routes",
+        "description": "routes",
+        "isExtraImport": true,
+        "detail": "routes",
+        "documentation": {}
+    },
+    {
+        "label": "emocion",
+        "importPath": "routes",
+        "description": "routes",
+        "isExtraImport": true,
+        "detail": "routes",
+        "documentation": {}
+    },
+    {
+        "label": "emocionDetectada",
+        "importPath": "routes",
+        "description": "routes",
+        "isExtraImport": true,
+        "detail": "routes",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "kind": 6,
+        "importPath": "models.baseModel",
+        "description": "models.baseModel",
+        "peekOfCode": "class BaseModel(db.Model):\n    __abstract__ = True\n    def to_dict(self, show=None, _hide=None, _path=None):\n        \"\"\"Return a dictionary representation of this model.\"\"\"\n        show = show or []\n        _hide = _hide or []\n        hidden = self._hidden_fields if hasattr(self, \"_hidden_fields\") else []\n        default = self._default_fields if hasattr(self, \"_default_fields\") else []\n        default.extend(['id', 'modified_at', 'created_at'])\n        if not _path:",
+        "detail": "models.baseModel",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.baseModel",
+        "description": "models.baseModel",
+        "peekOfCode": "db = dbSetting.db\nclass BaseModel(db.Model):\n    __abstract__ = True\n    def to_dict(self, show=None, _hide=None, _path=None):\n        \"\"\"Return a dictionary representation of this model.\"\"\"\n        show = show or []\n        _hide = _hide or []\n        hidden = self._hidden_fields if hasattr(self, \"_hidden_fields\") else []\n        default = self._default_fields if hasattr(self, \"_default_fields\") else []\n        default.extend(['id', 'modified_at', 'created_at'])",
+        "detail": "models.baseModel",
+        "documentation": {}
+    },
+    {
+        "label": "db_name",
+        "kind": 5,
+        "importPath": "models.dbSetting",
+        "description": "models.dbSetting",
+        "peekOfCode": "db_name = 'database.sqlite'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True\ndb = SQLAlchemy()\ndb.init_app(app)\nif 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:\n    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa\n        # print(\"turning on foreign keys for connection\")\n        dbapi_con.execute('pragma foreign_keys=ON')\n    with app.app_context():",
+        "detail": "models.dbSetting",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "models.dbSetting",
+        "description": "models.dbSetting",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True\ndb = SQLAlchemy()\ndb.init_app(app)\nif 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:\n    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa\n        # print(\"turning on foreign keys for connection\")\n        dbapi_con.execute('pragma foreign_keys=ON')\n    with app.app_context():\n        from sqlalchemy import event",
+        "detail": "models.dbSetting",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS']",
+        "kind": 5,
+        "importPath": "models.dbSetting",
+        "description": "models.dbSetting",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True\ndb = SQLAlchemy()\ndb.init_app(app)\nif 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:\n    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa\n        # print(\"turning on foreign keys for connection\")\n        dbapi_con.execute('pragma foreign_keys=ON')\n    with app.app_context():\n        from sqlalchemy import event\n        event.listen(db.engine, 'connect', _fk_pragma_on_connect)",
+        "detail": "models.dbSetting",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.dbSetting",
+        "description": "models.dbSetting",
+        "peekOfCode": "db = SQLAlchemy()\ndb.init_app(app)\nif 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:\n    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa\n        # print(\"turning on foreign keys for connection\")\n        dbapi_con.execute('pragma foreign_keys=ON')\n    with app.app_context():\n        from sqlalchemy import event\n        event.listen(db.engine, 'connect', _fk_pragma_on_connect)\n        # print(\"foreign keys are already on\")",
+        "detail": "models.dbSetting",
+        "documentation": {}
+    },
+    {
+        "label": "EmocionDetectada",
+        "kind": 6,
+        "importPath": "models.emocionesDetectadasModel",
+        "description": "models.emocionesDetectadasModel",
+        "peekOfCode": "class EmocionDetectada(BaseModel):\n    __tablename__ = 'emociones_detectadas'\n    id_emocion = db.Column(db.Integer, ForeignKey('emociones.id_emocion'), primary_key=True)\n    correo = db.Column(db.String, ForeignKey('usuario.correo'), primary_key=True)\n    id_estrategia = db.Column(db.String, ForeignKey('estrategias.id_estrategia'), primary_key=True)\n    fecha_deteccion = db.Column(db.Integer, default=0)\n    _default_fields = [\n        \"id_emocion\",\n        \"correo\",\n        \"fecha_deteccion\"",
+        "detail": "models.emocionesDetectadasModel",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.emocionesDetectadasModel",
+        "description": "models.emocionesDetectadasModel",
+        "peekOfCode": "db = dbSetting.db\n# Modelo de emocion detectada\nclass EmocionDetectada(BaseModel):\n    __tablename__ = 'emociones_detectadas'\n    id_emocion = db.Column(db.Integer, ForeignKey('emociones.id_emocion'), primary_key=True)\n    correo = db.Column(db.String, ForeignKey('usuario.correo'), primary_key=True)\n    id_estrategia = db.Column(db.String, ForeignKey('estrategias.id_estrategia'), primary_key=True)\n    fecha_deteccion = db.Column(db.Integer, default=0)\n    _default_fields = [\n        \"id_emocion\",",
+        "detail": "models.emocionesDetectadasModel",
+        "documentation": {}
+    },
+    {
+        "label": "Emocion",
+        "kind": 6,
+        "importPath": "models.emocionesModel",
+        "description": "models.emocionesModel",
+        "peekOfCode": "class Emocion(BaseModel):\n    __tablename__ = 'emociones'\n    id_emocion = db.Column(db.Integer, primary_key=True, autoincrement=True)\n    emocion_texto = db.Column(db.String, default='no_name')\n    _default_fields = [\n        \"id_emocion\",\n        \"emocion_texto\",\n    ]\n    _hidden_fields = [\n    ]",
+        "detail": "models.emocionesModel",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.emocionesModel",
+        "description": "models.emocionesModel",
+        "peekOfCode": "db = dbSetting.db\n# Modelo de emocion\nclass Emocion(BaseModel):\n    __tablename__ = 'emociones'\n    id_emocion = db.Column(db.Integer, primary_key=True, autoincrement=True)\n    emocion_texto = db.Column(db.String, default='no_name')\n    _default_fields = [\n        \"id_emocion\",\n        \"emocion_texto\",\n    ]",
+        "detail": "models.emocionesModel",
+        "documentation": {}
+    },
+    {
+        "label": "Estrategia",
+        "kind": 6,
+        "importPath": "models.estrategiasModel",
+        "description": "models.estrategiasModel",
+        "peekOfCode": "class Estrategia(BaseModel):\n    __tablename__ = 'estrategias'\n    id_estrategia = db.Column(db.Integer, primary_key=True, autoincrement=True)\n    texto_estrategia = db.Column(db.String, default='no_name')\n    _default_fields = [\n        \"id_estrategia\",\n        \"texto_estrategia\",\n    ]\n    _hidden_fields = [\n    ]",
+        "detail": "models.estrategiasModel",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.estrategiasModel",
+        "description": "models.estrategiasModel",
+        "peekOfCode": "db = dbSetting.db\n# Modelo de emocion\nclass Estrategia(BaseModel):\n    __tablename__ = 'estrategias'\n    id_estrategia = db.Column(db.Integer, primary_key=True, autoincrement=True)\n    texto_estrategia = db.Column(db.String, default='no_name')\n    _default_fields = [\n        \"id_estrategia\",\n        \"texto_estrategia\",\n    ]",
+        "detail": "models.estrategiasModel",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "kind": 6,
+        "importPath": "models.usuarioModel",
+        "description": "models.usuarioModel",
+        "peekOfCode": "class Usuario(BaseModel):\n    __tablename__ = 'usuario'\n    correo = db.Column(db.String, primary_key=True)\n    nombre = db.Column(db.String, default='no_name')\n    ap_paterno = db.Column(db.String, default='no_ap_p')\n    ap_materno = db.Column(db.String, default='no_ap_m')\n    password = db.Column(db.String, default='password')\n    salt = db.Column(db.String)\n    fecha_nacimiento = db.Column(db.Integer)\n    _default_fields = [",
+        "detail": "models.usuarioModel",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "models.usuarioModel",
+        "description": "models.usuarioModel",
+        "peekOfCode": "db = dbSetting.db\n# Modelo de usuario\nclass Usuario(BaseModel):\n    __tablename__ = 'usuario'\n    correo = db.Column(db.String, primary_key=True)\n    nombre = db.Column(db.String, default='no_name')\n    ap_paterno = db.Column(db.String, default='no_ap_p')\n    ap_materno = db.Column(db.String, default='no_ap_m')\n    password = db.Column(db.String, default='password')\n    salt = db.Column(db.String)",
+        "detail": "models.usuarioModel",
+        "documentation": {}
+    },
+    {
+        "label": "db_name",
+        "kind": 5,
+        "importPath": "others.init",
+        "description": "others.init",
+        "peekOfCode": "db_name = '../database.sqlite'\ndb = sqlite3.connect(db_name)\nwith open('dbScripts/create_database.sql', 'r') as sql_file:\n    sql_script = sql_file.read()\ncursor = db.cursor()\ncursor.executescript(sql_script)\ndb.commit()\ndb.close()",
+        "detail": "others.init",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "others.init",
+        "description": "others.init",
+        "peekOfCode": "db = sqlite3.connect(db_name)\nwith open('dbScripts/create_database.sql', 'r') as sql_file:\n    sql_script = sql_file.read()\ncursor = db.cursor()\ncursor.executescript(sql_script)\ndb.commit()\ndb.close()",
+        "detail": "others.init",
+        "documentation": {}
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "others.init",
+        "description": "others.init",
+        "peekOfCode": "cursor = db.cursor()\ncursor.executescript(sql_script)\ndb.commit()\ndb.close()",
+        "detail": "others.init",
+        "documentation": {}
+    },
+    {
+        "label": "new_emocion",
+        "kind": 2,
+        "importPath": "routes.emocion",
+        "description": "routes.emocion",
+        "peekOfCode": "def new_emocion():\n    if request.method != 'POST':\n        return \"not a post method\", 400\n    if not request.is_json:\n        return \"not json\", 415\n    payload: dict = request.get_json(force=True)\n    emocion_texto = payload.get(\"emocion_texto\")\n    if emocion_texto is None:\n        return \"Unable to get params: Expected json with (emocion_texto)\", 406\n    Emocion.new(emocion_texto)",
+        "detail": "routes.emocion",
+        "documentation": {}
+    },
+    {
+        "label": "get_emociones",
+        "kind": 2,
+        "importPath": "routes.emocion",
+        "description": "routes.emocion",
+        "peekOfCode": "def get_emociones():\n    if request.method != 'GET':\n        return \"not a post method\", 400\n    emociones: [] = Emocion.get_all()\n    emocionesSal: list = []\n    for emocion in emociones:\n        emocionesSal.append(emocion.to_dict())\n    object_to_return = {\"resp\": \"exito\", \"contenido\": emocionesSal}\n    return object_to_return, 200",
+        "detail": "routes.emocion",
+        "documentation": {}
+    },
+    {
+        "label": "new_emocion_detectada",
+        "kind": 2,
+        "importPath": "routes.emocionDetectada",
+        "description": "routes.emocionDetectada",
+        "peekOfCode": "def new_emocion_detectada():\n    if request.method != 'POST':\n        return \"not a post method\", 400\n    if not request.is_json:\n        return \"not json\", 415\n    payload: dict = request.get_json(force=True)\n    id_emocion = payload.get(\"id_emocion\")\n    correo = payload.get(\"correo\")\n    id_estrategia = payload.get(\"id_estrategia\")\n    if id_emocion is None or correo is None or id_estrategia is None:",
+        "detail": "routes.emocionDetectada",
+        "documentation": {}
+    },
+    {
+        "label": "get_emociones_detectadas",
+        "kind": 2,
+        "importPath": "routes.emocionDetectada",
+        "description": "routes.emocionDetectada",
+        "peekOfCode": "def get_emociones_detectadas():\n    if request.method != 'GET':\n        return \"not a post method\", 400\n    emocionesDetectadas: [] = EmocionDetectada.get_all()\n    emocionesDetectadasSal: list = []\n    for emocion in emocionesDetectadas:\n        emocionesDetectadasSal.append(emocion.to_dict())\n    object_to_return = {\"resp\": \"exito\", \"contenido\": emocionesDetectadasSal}\n    return object_to_return, 200",
+        "detail": "routes.emocionDetectada",
+        "documentation": {}
+    },
+    {
+        "label": "new_usuario",
+        "kind": 2,
+        "importPath": "routes.user",
+        "description": "routes.user",
+        "peekOfCode": "def new_usuario():\n    if request.method != 'POST':\n        return \"not a post method\", 400\n    if not request.is_json:\n        return \"not json\", 415\n    payload: dict = request.get_json(force=True)\n    correo = payload.get(\"correo\")\n    nombre = payload.get(\"nombre\")\n    ap_paterno = payload.get(\"ap_paterno\")\n    ap_materno = payload.get(\"ap_materno\")",
+        "detail": "routes.user",
+        "documentation": {}
+    },
+    {
+        "label": "random_word",
+        "kind": 2,
+        "importPath": "utils.random",
+        "description": "utils.random",
+        "peekOfCode": "def random_word(length):\n    letters = string.ascii_lowercase\n    return ''.join(random.choice(letters) for i in range(length))",
+        "detail": "utils.random",
+        "documentation": {}
+    },
+    {
+        "label": "hello_world",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def hello_world():  # put application's code here\n    return json.dumps({'message': 'Hello World!!'}), 200, {'ContentType': 'application/json'}\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef hello_world():  # put application's code here\n    return json.dumps({'message': 'Hello World!!'}), 200, {'ContentType': 'application/json'}\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "app",
+        "documentation": {}
+    }
+]
