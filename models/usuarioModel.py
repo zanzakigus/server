@@ -72,6 +72,18 @@ class Usuario(BaseModel):
         db.session.delete(user)
         db.session.commit()
 
+    @staticmethod
+    def validate_credentials(_correo: str, _password: str):
+        user: [] = Usuario.query.filter_by(correo=_correo).all()
+        if len(user) == 0:
+            return False
+        # valid correo
+        user: Usuario = user[0]
+        encrypted_test = Usuario.__generate_pass(_password, user.salt)
+        if user.password == encrypted_test:
+            return True
+        else:
+            return False
     # Método privado para la generación de la contraseña
     @staticmethod
     def __generate_pass(_pass, _salt):
