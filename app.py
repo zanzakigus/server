@@ -2,7 +2,6 @@ from flask import Flask, request, json
 
 
 app = Flask(__name__)
-
 # import db setting and models
 from models import dbSetting
 from models.baseModel import BaseModel
@@ -15,9 +14,6 @@ from models.estrategiasModel import Estrategia
 from routes import user
 from routes import emocion
 from routes import emocionDetectada
-
-
-
 
 @app.route('/')
 def hello_world():  # put application's code here

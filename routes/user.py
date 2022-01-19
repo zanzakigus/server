@@ -18,7 +18,7 @@ def new_usuario():
         return "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password," \
                "fecha_nacimiento)", 406
     Usuario.new(correo, nombre, ap_paterno, ap_materno, password, fecha_nacimiento)
-    object_to_return = {"resp": "exito"}
+    object_to_return = {"resp":  True}
     return object_to_return, 200
 
 
@@ -29,10 +29,11 @@ def login():
     if not request.is_json:
         return "not json", 415
     payload: dict = request.get_json(force=True)
+
+    print(request.args.get("Pass"))
     correo = payload.get("correo")
     password = payload.get("password")
-    fecha_nacimiento = payload.get("fecha_nacimiento")
-    if correo is None or password is None or fecha_nacimiento is None:
+    if correo is None or password is None:
         return "Unable to get params: Expected json with (correo,password)", 406
-    object_to_return = {"resp": "exito"}
+    object_to_return = {"resp":  True}
     return object_to_return, 200

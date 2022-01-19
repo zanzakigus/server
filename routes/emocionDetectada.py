@@ -14,7 +14,7 @@ def new_emocion_detectada():
     if id_emocion is None or correo is None or id_estrategia is None:
         return "Unable to get params: Expected json with (id_emocion, correo, id_estrategia)", 406
     EmocionDetectada.new(id_emocion, correo, id_estrategia)
-    object_to_return = {"resp": "exito"}
+    object_to_return = {"resp":  True}
     return object_to_return, 200
 
 
@@ -26,5 +26,5 @@ def get_emociones_detectadas():
     emocionesDetectadasSal: list = []
     for emocion in emocionesDetectadas:
         emocionesDetectadasSal.append(emocion.to_dict())
-    object_to_return = {"resp": "exito", "contenido": emocionesDetectadasSal}
+    object_to_return = {"resp":  True, "contenido": emocionesDetectadasSal}
     return object_to_return, 200

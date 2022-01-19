@@ -41,11 +41,20 @@ python init.py
 
 ## Ejecutando el servidor ⚙️
 
-Para correr el servidor correr el comandando siguiente en consola:
+Para correr el servidor usar el comandando siguiente en consola:
 
 ```
 flask run 
 ```
+
+
+Para correr el servidor con ip detectable red interna ejecutar el comandando siguiente en consola:
+
+```
+flask run -h 0.0.0.0 -p 8000
+
+```
+Verificar que el puesto 8000 este abierto
 
 ## Despliegue 📦
 

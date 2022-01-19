@@ -12,7 +12,7 @@ def new_emocion():
     if emocion_texto is None:
         return "Unable to get params: Expected json with (emocion_texto)", 406
     Emocion.new(emocion_texto)
-    object_to_return = {"resp": "exito"}
+    object_to_return = {"resp":  True}
     return object_to_return, 200
 
 
@@ -24,5 +24,5 @@ def get_emociones():
     emocionesSal: list = []
     for emocion in emociones:
         emocionesSal.append(emocion.to_dict())
-    object_to_return = {"resp": "exito", "contenido": emocionesSal}
+    object_to_return = {"resp":  True, "contenido": emocionesSal}
     return object_to_return, 200
