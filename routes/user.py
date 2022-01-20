@@ -25,12 +25,10 @@ def new_usuario():
 
 # -----------------------------Get User Route--------------------------------------
 @app.route('/usuario', methods=["GET"])
-def login():
+def get_usuario():
     if request.method != 'GET':
         return "not a post method", 400
-    if not request.is_json:
-        return "not json", 415
-    payload: dict = request.get_json(force=True)
+    payload: dict = request.args.to_dict()
     correo = payload.get("correo")
     password = payload.get("password")
     if correo is None or password is None:
@@ -45,6 +43,7 @@ def login():
     return object_to_return, 200
 
 
+# -----------------------------Login Route--------------------------------------
 @app.route('/login', methods=["POST"])
 def login():
     if request.method != 'POST':
