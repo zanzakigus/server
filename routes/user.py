@@ -5,9 +5,19 @@ from app import app, Usuario, request
 @app.route('/usuario', methods=["POST"])
 def new_usuario():
     if request.method != 'POST':
-        return "not a post method", 400
+        object_to_return = {
+            "message": "Not a post method",
+            "status": 400
+        }
+        return object_to_return, 400
+    
     if not request.is_json:
-        return "not json", 415
+        object_to_return = {
+            "message": "Not json",
+            "status": 415
+        }
+        return object_to_return, 415
+    
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
     nombre = payload.get("nombre")
@@ -16,10 +26,17 @@ def new_usuario():
     password = payload.get("password")
     fecha_nacimiento = payload.get("fecha_nacimiento")
     if correo is None or nombre is None or ap_paterno is None or ap_materno is None or password is None or fecha_nacimiento is None:
-        return "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password," \
-               "fecha_nacimiento)", 406
+        object_to_return = {
+            "message": "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password,fecha_nacimiento)",
+            "status": 406
+        }
+        return object_to_return, 406
+    
     Usuario.new(correo, nombre, ap_paterno, ap_materno, password, fecha_nacimiento)
-    object_to_return = {"resp": True}
+    object_to_return = {
+        "message": "OK",
+        "status": 200
+    }
     return object_to_return, 200
 
 

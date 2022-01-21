@@ -52,7 +52,6 @@ Para correr el servidor con ip detectable red interna ejecutar el comandando sig
 
 ```
 flask run -h 0.0.0.0 -p 8000
-
 ```
 Verificar que el puesto 8000 este abierto
 
