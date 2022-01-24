@@ -54,16 +54,14 @@ class Usuario(BaseModel):
         return values[0]
 
     @staticmethod
-    def update(_id: int, correo: str, nombre: str, ap_paterno: str, ap_materno: str, password: str,
+    def update(_id: int, nombre: str, ap_paterno: str, ap_materno: str, password: str,
                fecha_nacimiento: int):
         user: Usuario = Usuario.get_by_id(_id)
-        user.correo = correo
         user.nombre = nombre
         user.ap_paterno = ap_paterno
         user.ap_materno = ap_materno
         user.fecha_nacimiento = fecha_nacimiento
         user.password = Usuario.__generate_pass(password, user.salt)
-        db.session.delete(user)
         db.session.commit()
 
     @staticmethod
