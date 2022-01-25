@@ -54,13 +54,18 @@ class Usuario(BaseModel):
         return values[0]
 
     @staticmethod
-    def update(_id: int, nombre: str, ap_paterno: str, ap_materno: str, password: str,
-               fecha_nacimiento: int):
+    def updateInfo(_id: str, nombre: str, ap_paterno: str, ap_materno: str, fecha_nacimiento: int):
         user: Usuario = Usuario.get_by_id(_id)
         user.nombre = nombre
         user.ap_paterno = ap_paterno
         user.ap_materno = ap_materno
         user.fecha_nacimiento = fecha_nacimiento
+        #user.password = Usuario.__generate_pass(password, user.salt)
+        db.session.commit()
+        
+    @staticmethod
+    def updatePassword(_id: str, password: str):
+        user: Usuario = Usuario.get_by_id(_id)
         user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
 
