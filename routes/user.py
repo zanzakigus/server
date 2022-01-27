@@ -139,17 +139,25 @@ def update_password():
 @app.route('/login', methods=["POST"])
 def login():
     if request.method != 'POST':
-        return "not a post method", 400
+        return {
+                "message": "Not a post method",
+                "status": 400
+                }, 400
     if not request.is_json:
-        return "not json", 415
+        return {
+                "message": "Not json",
+                "status": 415
+                }, 415
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
     password = payload.get("password")
     if correo is None or password is None:
         return "Unable to get params: Expected json with (correo,password)", 406
     if Usuario.validate_credentials(correo, password):
-        object_to_return = {"resp": True}
+        object_to_return = {"message": "OK",
+                            "status": 200}
     else:
-        object_to_return = {"resp": False}
+        object_to_return = {"message": "Unauthorized",
+                            "status": 401}
 
     return object_to_return, 200

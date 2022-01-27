@@ -3,7 +3,7 @@ from app import dbSetting, BaseModel
 db = dbSetting.db
 
 
-# Modelo de emocion
+# Modelo de estrategia
 class Estrategia(BaseModel):
     __tablename__ = 'estrategias'
     id_estrategia = db.Column(db.Integer, primary_key=True, autoincrement=True)
