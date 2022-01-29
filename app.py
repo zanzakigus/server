@@ -15,6 +15,7 @@ from models.estrategiasModel import Estrategia
 from routes import user
 from routes import emocion
 from routes import emocionDetectada
+from routes import neuralNetwork
 
 
 
