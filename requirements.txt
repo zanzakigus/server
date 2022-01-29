@@ -4,10 +4,16 @@ Flask==2.0.2
 greenlet==1.1.2
 itsdangerous==2.0.1
 Jinja2==3.0.3
+joblib==1.1.0
+keras==2.7.0
 MarkupSafe==2.0.1
+numpy==1.22.1
 pip==21.1.2
 pysha3==1.0.2
+scikit-learn==1.0.2
+scipy==1.7.3
 setuptools==57.0.0
 SQLAlchemy==1.4.29
+threadpoolctl==3.0.0
 Werkzeug==2.0.2
 wheel==0.36.2
