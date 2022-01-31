@@ -58,12 +58,12 @@ def get_usuario():
                 }, 406
     if Usuario.validate_credentials(correo, password):
         new_usuario: Usuario = Usuario.get_by_id(correo)
-        object_to_return = {"resp": True,
+        object_to_return = {
                             "contenido": new_usuario.to_dict(),
                             "message": "OK",
                             "status": 200}
     else:
-        object_to_return = {"resp": False,
+        object_to_return = {
                             "message": "Unauthorized",
                             "status": 401}
 
