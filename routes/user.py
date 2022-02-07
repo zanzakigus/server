@@ -39,7 +39,6 @@ def new_usuario():
     }
     return object_to_return, 200
 
-
 # -----------------------------Get User Route--------------------------------------
 @app.route('/usuario', methods=["GET"])
 def get_usuario():
@@ -105,6 +104,33 @@ def update_usuario():
     return object_to_return, 200
 
 # -----------------------------Password Route--------------------------------------
+@app.route('/password', methods=["GET"])
+def generate_email():
+    
+    payload: dict = request.args.to_dict()
+    correo = payload.get("correo")
+    password = payload.get("password")
+    
+    if correo is None or password is None:
+        object_to_return = {
+            "message": "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password,fecha_nacimiento)",
+            "status": 406
+        }
+        return object_to_return, 406
+    
+    if Usuario.validate_credentials(correo, password):
+        usuario: Usuario = Usuario.get_by_id(correo)
+        numbers: int = Usuario.generateEmail(correo=correo, nombre=usuario.nombre)
+        
+        object_to_return = {"message": "OK",
+                            "numbers": numbers,
+                            "status": 200}
+    else:
+        object_to_return = {"message": "Unauthorized",
+                            "status": 401}
+
+    return object_to_return, 200
+
 @app.route('/password', methods=["PUT"])
 def update_password():
     if request.method != 'PUT':
@@ -133,7 +159,6 @@ def update_password():
                             "status": 401}
 
     return object_to_return, 200
-
 
 # -----------------------------Login Route--------------------------------------
 @app.route('/login', methods=["POST"])
