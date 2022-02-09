@@ -6,10 +6,10 @@ from email.header import Header
 EMAIL = "resilience.tt@gmail.com"
 PASSWORD = "ResilienceTT2#"
 
-server = smtplib.SMTP("smtp.gmail.com", 587)
 coding = "latin-1"
 
 def send_code_password(correo: str, nombre: str, numeros: str):
+  server = smtplib.SMTP("smtp.gmail.com", 587)
   server.starttls()
   server.login(EMAIL, PASSWORD)
   
