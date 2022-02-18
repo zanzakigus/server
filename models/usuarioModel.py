@@ -1,6 +1,6 @@
 from app import dbSetting, BaseModel
 from utils.random import random_word, random_number
-from utils.email import send_code_password
+from utils.email import send_code_password, send_random_password
 from sha3 import sha3_512
 
 db = dbSetting.db
@@ -75,6 +75,14 @@ class Usuario(BaseModel):
         user: Usuario = Usuario.get_by_id(_id)
         user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
+        
+    @staticmethod
+    def randomPassword(_id: str):
+      user: Usuario = Usuario.get_by_id(_id)
+      newPassword = random_word(8)
+      user.password = Usuario.__generate_pass(newPassword, user.salt)
+      db.session.commit()
+      send_random_password(correo=user.correo, nombre=user.nombre, new_password=newPassword)
 
     @staticmethod
     def drop(_id: int):
