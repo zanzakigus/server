@@ -46,10 +46,11 @@ create table usuario
 
 create table emociones_detectadas
 (
-    id_emocion      integer primary key not null default 0,
+    id_emocion      integer not null default 0,
     correo          text                not null default 'no_email',
     id_estrategia   integer             not null default 0,
     fecha_deteccion integer             not null default 0,
+    primary key (id_emocion, correo, id_estrategia, fecha_deteccion),
     constraint emociones_detectadas_usuario_fk
         foreign key (correo) references usuario (correo) on delete cascade on update restrict,
     constraint emociones_detectadas_estrategia_fk
@@ -66,9 +67,7 @@ create trigger if not exists new_emocion_detectada
 begin
     update emociones_detectadas
     set fecha_deteccion = (strftime('%s', 'now') + 1800)
-    where id_emocion == New.id_emocion
-      and correo == New.correo
-      and id_estrategia == New.id_estrategia;
+    where ROWID == new.ROWID;
 end;
 
 

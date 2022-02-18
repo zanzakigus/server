@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -14,7 +16,7 @@ class EmocionDetectada(BaseModel):
     id_emocion = db.Column(db.Integer, ForeignKey('emociones.id_emocion'), primary_key=True)
     correo = db.Column(db.String, ForeignKey('usuario.correo'), primary_key=True)
     id_estrategia = db.Column(db.String, ForeignKey('estrategias.id_estrategia'), primary_key=True)
-    fecha_deteccion = db.Column(db.Integer, default=0)
+    fecha_deteccion = db.Column(db.Integer, primary_key=True, default=int(round((datetime.now()).timestamp())))
 
     _default_fields = [
         "id_emocion",
