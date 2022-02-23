@@ -30,13 +30,28 @@ class EmocionDetectada(BaseModel):
 
     @staticmethod
     def new(id_emocion: int, correo: str, id_estrategia: int):
-        emotion: EmocionDetectada = EmocionDetectada(id_emocion=id_emocion, correo=correo, id_estrategia= id_estrategia)
+        emotion: EmocionDetectada = EmocionDetectada(id_emocion=id_emocion, correo=correo, id_estrategia=id_estrategia)
         db.session.add(emotion)
         db.session.commit()
 
     @staticmethod
     def get_all():
         values: [] = EmocionDetectada.query.all()
+        if len(values) == 0:
+            return []
+        return values
+
+    @staticmethod
+    def get_by_period(fecha_ini: str, fecha_fin: str, _correo: str):
+        dt_tuple = tuple([int(x) for x in fecha_ini[:10].split('/')])
+        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
+        fecha_ini = int(datetime(*dt_tuple).timestamp())
+        dt_tuple = tuple([int(x) for x in fecha_fin[:10].split('/')]) + (00, 00, 00)
+        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
+        fecha_fin = int(datetime(*dt_tuple).timestamp())
+        print(fecha_fin)
+        values: [] = EmocionDetectada.query.filter(
+            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).all()
         if len(values) == 0:
             return []
         return values

@@ -1,4 +1,5 @@
 from app import app, request, EmocionDetectada
+from datetime import datetime
 
 
 @app.route('/emocion_detectada', methods=["POST"])
@@ -36,10 +37,26 @@ def get_emociones_detectadas():
                    "message": "Not a get method",
                    "status": 400
                }, 400
+    payload: dict = request.args.to_dict()
+    correo = payload.get("correo")
+    password = payload.get("password")
+    fecha_ini = payload.get("fecha_ini")
+    fecha_fin = payload.get("fecha_fin")
+    if password is None or correo is None:
+        object_to_return = {
+            "message": "Unable to get params: Expected json with (correo, password)",
+            "status": 406
+        }
+        return object_to_return, 406
+    if (fecha_ini is None or fecha_fin is None):
+        emocionesDetectadas: [] = EmocionDetectada.get_by_id_correo(correo)
+    else:
+        emocionesDetectadas: [] = EmocionDetectada.get_by_period(fecha_ini, fecha_fin, correo)
 
-    emocionesDetectadas: [] = EmocionDetectada.get_all()
     emocionesDetectadasSal: list = []
+
     for emocion in emocionesDetectadas:
+        emocion.fecha_deteccion = datetime.utcfromtimestamp(emocion.fecha_deteccion).strftime('%d/%m/%Y %H:%M:%S')
         emocionesDetectadasSal.append(emocion.to_dict())
     object_to_return = {"status": 200, "message": emocionesDetectadasSal}
     return object_to_return, 200
