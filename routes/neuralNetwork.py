@@ -228,25 +228,38 @@ def exist_neural():
 
     correo = payload.get("correo")
     password = payload.get("password")
+    section_size = payload.get("section_size")
 
     if not Usuario.validate_credentials(correo, password):
         object_to_return = {"resp": False,
                             "message": "Unauthorized",
                             "status": 401}
         return object_to_return, 401
-    if correo is None or password is None:
+    if correo is None or password is None or section_size is None:
         object_to_return = {
-            "message": "Unable to get params: Expected json with (correo, password)",
+            "message": "Unable to get params: Expected json with (correo, password, section_size)",
             "status": 406
         }
         return object_to_return, 406
 
-    file_exists = exists('static/user_files/' + correo + '/neural_model.pkl')
+    neural_model_exist = exists('static/user_files/' + correo + '/neural_model.pkl')
+    wavesdata_exist = exists('static/user_files/' + correo + '/wavesdata.csv')
+    tipos_exist = exists('static/user_files/' + correo + '/tipos.csv')
+    wavesdata_test_exist = exists('static/user_files/' + correo + '/wavesdata_test.csv')
+    tipos_test_exist = exists('static/user_files/' + correo + '/tipos_test.csv')
 
-    message = "No file"
-    if file_exists:
+    if not neural_model_exist and not wavesdata_exist and not tipos_exist and not wavesdata_test_exist and not tipos_test_exist:
+        message = "None"
+    elif wavesdata_exist and tipos_exist and wavesdata_test_exist and tipos_test_exist and not neural_model_exist:
+        with open('static/user_files/' + correo + '/wavesdata.csv', 'r') as file:
+            reader = csv.reader(file)
+            data = list(reader)
+            row_count = len(data)
+        message = str(int(row_count / int(section_size)))
+    elif wavesdata_exist and tipos_exist and wavesdata_test_exist and tipos_test_exist and neural_model_exist:
         message = "OK"
-
+    else:
+        message = "Unknown"
     object_to_return = {"message": message,
                         "status": 200}
 
