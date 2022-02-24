@@ -6,8 +6,6 @@ import joblib
 from os.path import exists
 
 from numpy.core import numeric
-
-from utils.sharedFunctions import enconder
 from sklearn.neural_network import MLPClassifier
 from app import app, request, Usuario, EmocionDetectada
 
@@ -26,44 +24,52 @@ def waves_data():
                    "status": 415
                }, 415
     payload: dict = request.get_json(force=True)
-    store_details = [payload.get('HIGH_ALPHA'), payload.get('LOW_GAMMA'), payload.get('LOW_ALPHA'),
-                     payload.get('DELTA'), payload.get('MID_GAMMA'), payload.get('HIGH_BETA'), payload.get('LOW_BETA'),
-                     payload.get('THETA')]
     correo = payload.get("correo")
     password = payload.get("password")
     tipo = payload.get("tipo")
-    train_file = int(payload.get("train_file"))
+    array_waves = payload.get("array_waves")
     if not Usuario.validate_credentials(correo, password):
         object_to_return = {"resp": False,
                             "message": "Unauthorized",
                             "status": 401}
         return object_to_return, 401
-    if store_details[0] is None or store_details[1] is None or store_details[2] is None or store_details[3] is None or \
-            store_details[4] is None or store_details[5] is None or store_details[6] is None or store_details[
-        7] is None or correo is None or password is None or tipo is None or train_file is None:
+    if correo is None or password is None or tipo is None or array_waves is None:
         object_to_return = {
-            "message": "Unable to get params: Expected json with (HIGH_ALPHA, LOW_GAMMA, LOW_ALPHA, DELTA, MID_GAMMA, "
-                       "HIGH_BETA, LOW_BETA, THETA, correo, password, tipo, train_file)",
+            "message": "Unable to get params: Expected json with ( correo, password, tipo, array_waves)",
             "status": 406
         }
         return object_to_return, 406
 
-    file_name_waves = "/wavesdata.csv"
-    file_name_tipo = "/tipos.csv"
-    if train_file == 1:
-        file_name_waves = "/wavesdata_test.csv"
-        file_name_tipo = "/tipos_test.csv"
-
+    array_waves = [x.strip().strip("},").strip(" ") for x in array_waves.strip('[]').split("{")]
+    if len(array_waves[0]) == 0:
+        array_waves.pop(0)
+    array_waves = [dict(
+        (xx.strip(), y.strip())
+        for xx, y in (element.split('=') for element in x.split(', ')))
+        for x in array_waves]
+    train_ini = int(len(array_waves) * 0.8)
+    count = 0
     os.makedirs("static/user_files/" + correo, mode=0o777, exist_ok=True)
-    with open('static/user_files/' + correo + file_name_waves, 'a+', newline='') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=',',
-                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow(store_details)
+    for sample in array_waves:
+        count += 1
+        store_details = [sample.get('HIGH_ALPHA'), sample.get('LOW_GAMMA'), sample.get('LOW_ALPHA'),
+                         sample.get('DELTA'), sample.get('MID_GAMMA'), sample.get('HIGH_BETA'), sample.get('LOW_BETA'),
+                         sample.get('THETA')]
+        if count < train_ini:
+            file_name_waves = "/wavesdata.csv"
+            file_name_tipo = "/tipos.csv"
+        else:
+            file_name_waves = "/wavesdata_test.csv"
+            file_name_tipo = "/tipos_test.csv"
+        with open('static/user_files/' + correo + file_name_waves, 'a+', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            spamwriter.writerow(store_details)
 
-    with open('static/user_files/' + correo + file_name_tipo, 'a+', newline='') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=',',
-                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow([tipo])
+        with open('static/user_files/' + correo + file_name_tipo, 'a+', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            spamwriter.writerow(tipo[count])
 
     object_to_return = {"message": "OK",
                         "status": 200}
@@ -112,12 +118,6 @@ def fit_neural():
         for row in reader:
             result.append(row)
 
-    train_labels_enc = np.array(list(map(enconder, result)))
-    # print(train_labels_enc)
-    # test = [16772230, 68543, 27557, 1514095, 78696, 146423, 72003, 394675]
-    test_re = [0]
-    # test_labels_enc = np.array(list(map(enconder, test_re)))
-
     # Tres capas ocultas de 20-150-20 neuronas respectivamente
     clf = MLPClassifier(hidden_layer_sizes=(20, 150, 20))
 
@@ -159,9 +159,6 @@ def classify_neural():
                    "status": 415
                }, 415
     payload: dict = request.get_json(force=True)
-    store_details = [payload.get('HIGH_ALPHA'), payload.get('LOW_GAMMA'), payload.get('LOW_ALPHA'),
-                     payload.get('DELTA'), payload.get('MID_GAMMA'), payload.get('HIGH_BETA'), payload.get('LOW_BETA'),
-                     payload.get('THETA')]
     correo = payload.get("correo")
     password = payload.get("password")
     array_waves = payload.get("array_waves")
@@ -170,13 +167,9 @@ def classify_neural():
                             "message": "Unauthorized",
                             "status": 401}
         return object_to_return, 401
-    if store_details[0] is None or store_details[1] is None or store_details[2] is None or store_details[3] is None or \
-            store_details[4] is None or store_details[5] is None or \
-            store_details[6] is None or store_details[
-        7] is None or correo is None or password is None or array_waves is None:
+    if correo is None or password is None or array_waves is None:
         object_to_return = {
-            "message": "Unable to get params: Expected json with (HIGH_ALPHA, LOW_GAMMA, LOW_ALPHA, DELTA, MID_GAMMA, "
-                       "HIGH_BETA, LOW_BETA, THETA, correo, password)",
+            "message": "Unable to get params: Expected json with ( correo, password, array_waves)",
             "status": 406
         }
         return object_to_return, 406
