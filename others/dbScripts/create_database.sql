@@ -55,7 +55,7 @@ create table emociones_detectadas
         foreign key (correo) references usuario (correo) on delete cascade on update restrict,
     constraint emociones_detectadas_estrategia_fk
         foreign key (id_estrategia) references estrategias (id_estrategia) on delete cascade on update restrict,
-    constraint emociones_detectadas_emcion_fk
+    constraint emociones_detectadas_emocion_fk
         foreign key (id_emocion) references emociones (id_emocion) on delete cascade on delete restrict
 
 );
@@ -83,6 +83,10 @@ create table respuestas
         foreign key (id_pregunta) references preguntas (id_pregunta) on delete cascade on update restrict
 );
 
+insert into emociones values (0,'Negativo');
+insert into emociones values (1,'Positiva');
+
+insert into estrategias values (1, 'nueva estrategia')
 
 
 

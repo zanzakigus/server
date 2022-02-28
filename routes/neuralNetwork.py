@@ -69,7 +69,7 @@ def waves_data():
         with open('static/user_files/' + correo + file_name_tipo, 'a+', newline='') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=',',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            spamwriter.writerow(tipo[count])
+            spamwriter.writerow(tipo)
 
     object_to_return = {"message": "OK",
                         "status": 200}
