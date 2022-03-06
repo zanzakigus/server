@@ -86,7 +86,6 @@ create table respuestas
 insert into emociones values (0,'Negativo');
 insert into emociones values (1,'Positiva');
 
-insert into estrategias values (1, 'nueva estrategia')
-
+insert into estrategias values (1, 'nueva estrategia');
 
 

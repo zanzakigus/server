@@ -255,6 +255,10 @@ def exist_neural():
             reader = csv.reader(file)
             data = list(reader)
             row_count = len(data)
+        with open('static/user_files/' + correo + '/wavesdata_test.csv', 'r') as file:
+            reader = csv.reader(file)
+            data = list(reader)
+            row_count += len(data)
         message = str(int(row_count / int(section_size)))
     elif wavesdata_exist and tipos_exist and wavesdata_test_exist and tipos_test_exist and neural_model_exist:
         message = "OK"
