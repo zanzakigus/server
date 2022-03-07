@@ -17,8 +17,6 @@ from routes import emocion
 from routes import emocionDetectada
 from routes import neuralNetwork
 
-
-
 @app.route('/')
 def hello_world():  # put application's code here
     return json.dumps({'message': 'Hello World!!'}), 200, {'ContentType': 'application/json'}
