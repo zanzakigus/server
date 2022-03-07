@@ -176,14 +176,14 @@ def generate_email():
 def random_password():
     payload: dict = request.get_json()
     correo = payload.get("correo")
-    
+
     if correo is None:
         object_to_return = {
             "message": "Unable to get params: Expected json with (correo)",
             "status": 406
         }
         return object_to_return, 406
-    
+
     user: Usuario = Usuario.get_by_id(correo)
     if(user == None):
         object_to_return = {
@@ -193,7 +193,7 @@ def random_password():
     else:
         Usuario.randomPassword(correo)
         object_to_return = {"message": "OK",
-                        "status": 200}
+                            "status": 200}
 
     return object_to_return, 200
 
@@ -221,7 +221,7 @@ def login():
         object_to_return = {"message": "OK",
                             "status": 200}
     else:
-        object_to_return = {"message": "Unauthorized",
+        object_to_return = {"message": "Usuario no encontrado",
                             "status": 401}
 
     return object_to_return, 200
