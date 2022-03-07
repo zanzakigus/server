@@ -51,7 +51,7 @@ def get_emociones_detectadas():
     if (fecha_ini is None or fecha_fin is None):
         emocionesDetectadas: [] = EmocionDetectada.get_by_id_correo(correo)
     else:
-        emocionesDetectadas: [] = EmocionDetectada.get_by_period(fecha_ini, fecha_fin, correo)
+        emocionesDetectadas: [] = EmocionDetectada.get_by_period(fecha_ini, fecha_fin, correo, 0)
 
     emocionesDetectadasSal: list = []
 

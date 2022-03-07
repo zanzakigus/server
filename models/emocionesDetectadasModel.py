@@ -42,7 +42,7 @@ class EmocionDetectada(BaseModel):
         return values
 
     @staticmethod
-    def get_by_period(fecha_ini: str, fecha_fin: str, _correo: str):
+    def get_by_period(fecha_ini: str, fecha_fin: str, _correo: str, _tipo: int):
         dt_tuple = tuple([int(x) for x in fecha_ini[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
         fecha_ini = int(datetime(*dt_tuple).timestamp())
@@ -50,7 +50,7 @@ class EmocionDetectada(BaseModel):
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
         fecha_fin = int(datetime(*dt_tuple).timestamp())
         values: [] = EmocionDetectada.query.filter(
-            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
+            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).filter_by(id_emocion=_tipo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
         if len(values) == 0:
             return []
         return values
