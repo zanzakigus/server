@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, asc
 from sqlalchemy.orm import relationship
 
 from app import dbSetting, BaseModel
@@ -49,9 +49,8 @@ class EmocionDetectada(BaseModel):
         dt_tuple = tuple([int(x) for x in fecha_fin[:10].split('/')]) + (00, 00, 00)
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
         fecha_fin = int(datetime(*dt_tuple).timestamp())
-        print(fecha_fin)
         values: [] = EmocionDetectada.query.filter(
-            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).all()
+            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
         if len(values) == 0:
             return []
         return values
