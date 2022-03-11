@@ -1,4 +1,6 @@
-from app import app, Usuario, request
+from datetime import datetime, timezone, timedelta
+
+from app import app, Usuario, request, Fortalezas, EmocionDetectada
 
 
 # -----------------------------Create User Route--------------------------------------
@@ -25,20 +27,26 @@ def new_usuario():
     ap_materno = payload.get("ap_materno")
     password = payload.get("password")
     fecha_nacimiento = payload.get("fecha_nacimiento")
-    if correo is None or nombre is None or ap_paterno is None or ap_materno is None or password is None or fecha_nacimiento is None:
+    strengths = payload.get("strengths")
+    if correo is None or nombre is None or ap_paterno is None or ap_materno is None or password is None or \
+            fecha_nacimiento is None or strengths is None:
         object_to_return = {
             "message": "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password,fecha_nacimiento)",
             "status": 406
         }
         return object_to_return, 406
-
     Usuario.new(correo, nombre, ap_paterno,
                 ap_materno, password, fecha_nacimiento)
+    if Usuario.validate_credentials(correo, password):
+        strengths = [x.replace(" ", "") for x in strengths.strip('[]').split(",")]
+        for strength in strengths:
+            Fortalezas.new(correo, strength)
     object_to_return = {
         "message": "OK",
         "status": 200
     }
     return object_to_return, 200
+
 
 # -----------------------------Get User Route--------------------------------------
 
@@ -47,29 +55,41 @@ def new_usuario():
 def get_usuario():
     if request.method != 'GET':
         return {
-            "message": "Not a get method",
-            "status": 400
-        }, 400
+                   "message": "Not a get method",
+                   "status": 400
+               }, 400
     payload: dict = request.args.to_dict()
     correo = payload.get("correo")
     password = payload.get("password")
     if correo is None or password is None:
         return {
-            "message": "Unable to get params: Expected json with (correo,password)",
-            "status": 406
-        }, 406
-    if Usuario.validate_credentials(correo, password):
-        new_usuario: Usuario = Usuario.get_by_id(correo)
-        object_to_return = {
-            "contenido": new_usuario.to_dict(),
-            "message": "OK",
-            "status": 200}
-    else:
+                   "message": "Unable to get params: Expected json with (correo,password)",
+                   "status": 406
+               }, 406
+    if not Usuario.validate_credentials(correo, password):
         object_to_return = {
             "message": "Unauthorized",
             "status": 401}
+        return object_to_return, 400
+
+    usuario: Usuario = Usuario.get_by_id(correo)
+    emocionesDetectadas: [] = EmocionDetectada.get_by_id_correo(correo, 0)
+
+    current_time = datetime.now().replace(tzinfo=timezone.utc)
+    one_week_ago = current_time - timedelta(days=7)
+    current_time = str(current_time.day) + "/" + str(current_time.month) + "/" + str(current_time.year)
+    one_week_ago = str(one_week_ago.day) + "/" + str(one_week_ago.month) + "/" + str(one_week_ago.year)
+    emocionesNegUltimaSem: [] = EmocionDetectada.get_by_period(current_time, one_week_ago, correo, 0)
+
+    object_to_return = {
+        "contenido": usuario.to_dict(),
+        "statistics_week": len(emocionesNegUltimaSem),
+        "statistics_all": len(emocionesDetectadas),
+        "message": "OK",
+        "status": 200}
 
     return object_to_return, 200
+
 
 # -----------------------------PUT User Route--------------------------------------
 
@@ -78,9 +98,9 @@ def get_usuario():
 def update_usuario():
     if request.method != 'PUT':
         return {
-            "message": "Not a put method",
-            "status": 400
-        }, 400
+                   "message": "Not a put method",
+                   "status": 400
+               }, 400
 
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
@@ -91,7 +111,6 @@ def update_usuario():
     fecha_nacimiento = payload.get("fecha_nacimiento")
 
     if correo is None or nombre is None or ap_paterno is None or ap_materno is None or password is None or fecha_nacimiento is None:
-
         object_to_return = {
             "message": "Unable to get params: Expected json with (correo,nombre,ap_paterno,ap_materno,password,fecha_nacimiento)",
             "status": 406
@@ -109,6 +128,7 @@ def update_usuario():
 
     return object_to_return, 200
 
+
 # -----------------------------Password Route--------------------------------------
 
 
@@ -116,9 +136,9 @@ def update_usuario():
 def update_password():
     if request.method != 'PUT':
         return {
-            "message": "Not a put method",
-            "status": 400
-        }, 400
+                   "message": "Not a put method",
+                   "status": 400
+               }, 400
 
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
@@ -145,7 +165,6 @@ def update_password():
 
 @app.route('/password', methods=["GET"])
 def generate_email():
-
     payload: dict = request.args.to_dict()
     correo = payload.get("correo")
     password = payload.get("password")
@@ -185,7 +204,7 @@ def random_password():
         return object_to_return, 406
 
     user: Usuario = Usuario.get_by_id(correo)
-    if(user == None):
+    if (user == None):
         object_to_return = {
             "message": "Usuario no encontrado",
             "status": "404"
@@ -197,6 +216,7 @@ def random_password():
 
     return object_to_return, 200
 
+
 # -----------------------------Login Route--------------------------------------
 
 
@@ -204,14 +224,14 @@ def random_password():
 def login():
     if request.method != 'POST':
         return {
-            "message": "Not a post method",
-            "status": 400
-        }, 400
+                   "message": "Not a post method",
+                   "status": 400
+               }, 400
     if not request.is_json:
         return {
-            "message": "Not json",
-            "status": 415
-        }, 415
+                   "message": "Not json",
+                   "status": 415
+               }, 415
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
     password = payload.get("password")

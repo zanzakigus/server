@@ -60,6 +60,15 @@ create table emociones_detectadas
 
 );
 
+create table fortalezas
+(
+    correo          text                not null default 'no_correo',
+    fortaleza_texto text                not null default 'sin respuesta',
+    primary key ( correo, fortaleza_texto),
+    constraint respuestas_usuario_fk
+        foreign key (correo) references usuario (correo) on delete cascade on update restrict
+);
+
 
 create trigger if not exists new_emocion_detectada
     after insert
@@ -87,5 +96,6 @@ insert into emociones values (0,'Negativo');
 insert into emociones values (1,'Positiva');
 
 insert into estrategias values (1, 'nueva estrategia');
+insert into estrategias values (0, 'nueva estrategiad');
 
 

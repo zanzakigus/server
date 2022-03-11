@@ -10,12 +10,14 @@ from models.usuarioModel import Usuario
 from models.emocionesModel import Emocion
 from models.emocionesDetectadasModel import EmocionDetectada
 from models.estrategiasModel import Estrategia
+from models.fortalezasModel import Fortalezas
 
 # import declared routes
 from routes import user
 from routes import emocion
 from routes import emocionDetectada
 from routes import neuralNetwork
+from routes import fortaleza
 
 @app.route('/')
 def hello_world():  # put application's code here

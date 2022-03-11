@@ -42,6 +42,7 @@ def get_emociones_detectadas():
     password = payload.get("password")
     fecha_ini = payload.get("fecha_ini")
     fecha_fin = payload.get("fecha_fin")
+    tipo = payload.get("tipo")
     if password is None or correo is None:
         object_to_return = {
             "message": "Unable to get params: Expected json with (correo, password)",
@@ -51,7 +52,7 @@ def get_emociones_detectadas():
     if (fecha_ini is None or fecha_fin is None):
         emocionesDetectadas: [] = EmocionDetectada.get_by_id_correo(correo)
     else:
-        emocionesDetectadas: [] = EmocionDetectada.get_by_period(fecha_ini, fecha_fin, correo, 0)
+        emocionesDetectadas: [] = EmocionDetectada.get_by_period(fecha_ini, fecha_fin, correo, int(tipo))
 
     emocionesDetectadasSal: list = []
 

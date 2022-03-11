@@ -42,7 +42,6 @@ class Emocion(BaseModel):
     def update(_id: int, emocion_texto: str):
         emotion: Emocion = Emocion.get_by_id(_id)
         emotion.emocion_texto = emocion_texto
-        db.session.delete(emotion)
         db.session.commit()
 
     @staticmethod

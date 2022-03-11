@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timezone
 
 from sqlalchemy import ForeignKey, asc
 from sqlalchemy.orm import relationship
@@ -45,25 +45,39 @@ class EmocionDetectada(BaseModel):
     def get_by_period(fecha_ini: str, fecha_fin: str, _correo: str, _tipo: int):
         dt_tuple = tuple([int(x) for x in fecha_ini[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
-        fecha_ini = int(datetime(*dt_tuple).timestamp())
-        dt_tuple = tuple([int(x) for x in fecha_fin[:10].split('/')]) + (00, 00, 00)
-        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
-        fecha_fin = int(datetime(*dt_tuple).timestamp())
-        values: [] = EmocionDetectada.query.filter(
-            EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).filter_by(id_emocion=_tipo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
+        fecha_ini = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+
+        dt_tuple = tuple([int(x) for x in fecha_fin[:10].split('/')])
+        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (23, 59, 59)
+        fecha_fin = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+
+        if _tipo is not -1:
+            values: [] = EmocionDetectada.query.filter(
+                EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).filter_by(
+                id_emocion=_tipo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
+        else:
+            values: [] = EmocionDetectada.query.filter(
+                EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).order_by(
+                asc(EmocionDetectada.fecha_deteccion)).all()
         if len(values) == 0:
             return []
         return values
 
     @staticmethod
-    def get_by_id_correo(_correo: str):
-        values: [] = EmocionDetectada.query.filter_by(correo=_correo).all()
+    def get_by_id_correo(_correo: str, _tipo: int):
+        if _tipo is not -1:
+            values: [] = EmocionDetectada.query.filter_by(correo=_correo, id_emocion=_tipo).order_by(
+                asc(EmocionDetectada.fecha_deteccion)).all()
+        else:
+            values: [] = EmocionDetectada.query.filter_by(correo=_correo).order_by(
+                asc(EmocionDetectada.fecha_deteccion)).all()
         if len(values) == 0:
-            return None
-        return values[0]
+            return []
+        return values
 
     @staticmethod
-    def drop(_id: str):
-        emocionDetectada: EmocionDetectada = EmocionDetectada.get_by_id_correo(_id)
-        db.session.delete(emocionDetectada)
+    def drop_by_user(_id: str):
+        emocionDetectadas: [] = EmocionDetectada.get_by_id_correo(_id)
+        for emocionDetectada in emocionDetectadas:
+            db.session.delete(emocionDetectada)
         db.session.commit()

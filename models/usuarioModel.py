@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from app import dbSetting, BaseModel
 from utils.random import random_word, random_number
 from utils.email import send_code_password, send_random_password
@@ -33,6 +35,9 @@ class Usuario(BaseModel):
 
     @staticmethod
     def new(correo: str, nombre: str, ap_paterno: str, ap_materno: str, password: str, fecha_nacimiento: int):
+        dt_tuple = tuple([int(x) for x in fecha_nacimiento[:10].split('/')])
+        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
+        fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
         user: Usuario = Usuario(correo=correo, nombre=nombre, ap_paterno=ap_paterno, ap_materno=ap_materno,
                                 fecha_nacimiento=fecha_nacimiento)
         user.salt = random_word(15)
@@ -52,6 +57,7 @@ class Usuario(BaseModel):
         values: [] = Usuario.query.filter_by(correo=_id).all()
         if len(values) == 0:
             return None
+        values[0].fecha_nacimiento = datetime.utcfromtimestamp(values[0].fecha_nacimiento).strftime('%d/%m/%Y')
         return values[0]
 
     @staticmethod
@@ -61,28 +67,28 @@ class Usuario(BaseModel):
         user.ap_paterno = ap_paterno
         user.ap_materno = ap_materno
         user.fecha_nacimiento = fecha_nacimiento
-        #user.password = Usuario.__generate_pass(password, user.salt)
+        # user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
-        
+
     @staticmethod
     def generateEmail(correo: str, nombre: str):
         numbers = random_number(6)
         send_code_password(correo=correo, nombre=nombre, numeros=numbers)
         return numbers
-        
+
     @staticmethod
     def updatePassword(_id: str, password: str):
         user: Usuario = Usuario.get_by_id(_id)
         user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
-        
+
     @staticmethod
     def randomPassword(_id: str):
-      user: Usuario = Usuario.get_by_id(_id)
-      newPassword = random_word(8)
-      user.password = Usuario.__generate_pass(newPassword, user.salt)
-      db.session.commit()
-      send_random_password(correo=user.correo, nombre=user.nombre, new_password=newPassword)
+        user: Usuario = Usuario.get_by_id(_id)
+        newPassword = random_word(8)
+        user.password = Usuario.__generate_pass(newPassword, user.salt)
+        db.session.commit()
+        send_random_password(correo=user.correo, nombre=user.nombre, new_password=newPassword)
 
     @staticmethod
     def drop(_id: int):
@@ -102,6 +108,7 @@ class Usuario(BaseModel):
             return True
         else:
             return False
+
     # Método privado para la generación de la contraseña
     @staticmethod
     def __generate_pass(_pass, _salt):
