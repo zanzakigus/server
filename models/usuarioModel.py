@@ -66,6 +66,9 @@ class Usuario(BaseModel):
         user.nombre = nombre
         user.ap_paterno = ap_paterno
         user.ap_materno = ap_materno
+        dt_tuple = tuple([int(x) for x in fecha_nacimiento[:10].split('/')])
+        dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
+        fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
         user.fecha_nacimiento = fecha_nacimiento
         # user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
