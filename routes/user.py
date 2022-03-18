@@ -75,7 +75,8 @@ def get_usuario():
     usuario: Usuario = Usuario.get_by_id(correo)
     emocionesDetectadas: [] = EmocionDetectada.get_by_id_correo(correo, 0)
 
-    current_time = datetime.now().replace(tzinfo=timezone.utc)
+    #current_time = datetime.now().replace(tzinfo=timezone.utc)
+    current_time = datetime.now()
     one_week_ago = current_time - timedelta(days=7)
     current_time = str(current_time.day) + "/" + str(current_time.month) + "/" + str(current_time.year)
     one_week_ago = str(one_week_ago.day) + "/" + str(one_week_ago.month) + "/" + str(one_week_ago.year)

@@ -75,7 +75,7 @@ create trigger if not exists new_emocion_detectada
     on emociones_detectadas
 begin
     update emociones_detectadas
-    set fecha_deteccion = (strftime('%s', 'now') + 1800)
+    set fecha_deteccion = (strftime('%s', 'now'))
     where ROWID == new.ROWID;
 end;
 

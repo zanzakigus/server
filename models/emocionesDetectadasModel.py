@@ -45,11 +45,13 @@ class EmocionDetectada(BaseModel):
     def get_by_period(fecha_ini: str, fecha_fin: str, _correo: str, _tipo: int):
         dt_tuple = tuple([int(x) for x in fecha_ini[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
-        fecha_ini = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        #fecha_ini = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        fecha_ini = int(datetime(*dt_tuple).timestamp())
 
         dt_tuple = tuple([int(x) for x in fecha_fin[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (23, 59, 59)
-        fecha_fin = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        #fecha_fin = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        fecha_fin = int(datetime(*dt_tuple).timestamp())
 
         if _tipo is not -1:
             values: [] = EmocionDetectada.query.filter(

@@ -57,7 +57,8 @@ def get_emociones_detectadas():
     emocionesDetectadasSal: list = []
 
     for emocion in emocionesDetectadas:
-        emocion.fecha_deteccion = datetime.utcfromtimestamp(emocion.fecha_deteccion).strftime('%d/%m/%Y %H:%M')
+        #emocion.fecha_deteccion = datetime.utcfromtimestamp(emocion.fecha_deteccion).strftime('%d/%m/%Y %H:%M')
+        emocion.fecha_deteccion = datetime.fromtimestamp(emocion.fecha_deteccion).strftime('%d/%m/%Y %H:%M')
         emocionesDetectadasSal.append(emocion.to_dict())
     object_to_return = {"status": 200, "message": emocionesDetectadasSal}
     return object_to_return, 200

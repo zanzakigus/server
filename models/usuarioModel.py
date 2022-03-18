@@ -37,7 +37,8 @@ class Usuario(BaseModel):
     def new(correo: str, nombre: str, ap_paterno: str, ap_materno: str, password: str, fecha_nacimiento: int):
         dt_tuple = tuple([int(x) for x in fecha_nacimiento[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
-        fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        #fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        fecha_nacimiento = int(datetime(*dt_tuple).timestamp())
         user: Usuario = Usuario(correo=correo, nombre=nombre, ap_paterno=ap_paterno, ap_materno=ap_materno,
                                 fecha_nacimiento=fecha_nacimiento)
         user.salt = random_word(15)
@@ -57,7 +58,8 @@ class Usuario(BaseModel):
         values: [] = Usuario.query.filter_by(correo=_id).all()
         if len(values) == 0:
             return None
-        values[0].fecha_nacimiento = datetime.utcfromtimestamp(values[0].fecha_nacimiento).strftime('%d/%m/%Y')
+        #values[0].fecha_nacimiento = datetime.utcfromtimestamp(values[0].fecha_nacimiento).strftime('%d/%m/%Y')
+        values[0].fecha_nacimiento = datetime.fromtimestamp(values[0].fecha_nacimiento).strftime('%d/%m/%Y')
         return values[0]
 
     @staticmethod
@@ -68,7 +70,8 @@ class Usuario(BaseModel):
         user.ap_materno = ap_materno
         dt_tuple = tuple([int(x) for x in fecha_nacimiento[:10].split('/')])
         dt_tuple = (dt_tuple[2], dt_tuple[1], dt_tuple[0]) + (00, 00, 00)
-        fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        #fecha_nacimiento = int(datetime(*dt_tuple).replace(tzinfo=timezone.utc).timestamp())
+        fecha_nacimiento = int(datetime(*dt_tuple).timestamp())
         user.fecha_nacimiento = fecha_nacimiento
         # user.password = Usuario.__generate_pass(password, user.salt)
         db.session.commit()
