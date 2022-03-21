@@ -15,7 +15,7 @@ Las tecnologías necesarias para poder correr el servidor se encuentran descrita
 
 ### Instalación 🔧
 
-Se require la descarga de este mismo repositorio.
+Se requiere la descarga de este mismo repositorio.
 
 ```
 git clone https://github.com/zanzakigus/server.git
@@ -28,11 +28,10 @@ sudo apt install python3-pip
 Entrar a la carpeta del proyecto y correr el comando siguiente en consola:
 
 ```
-pip install -r requirements.txt 
+pip install -r requirements.txt
 ```
 
 Creación y/o actualización de base de datos
-
 
 ```
 cd others
@@ -44,15 +43,15 @@ python init.py
 Para correr el servidor usar el comandando siguiente en consola:
 
 ```
-flask run 
+flask run
 ```
-
 
 Para correr el servidor con ip detectable red interna ejecutar el comandando siguiente en consola:
 
 ```
 flask run -h 0.0.0.0 -p 8000
 ```
+
 Verificar que el puesto 8000 este abierto
 
 ## Despliegue 📦
