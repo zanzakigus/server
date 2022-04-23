@@ -58,9 +58,11 @@ class EmocionDetectada(BaseModel):
                 EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).filter_by(
                 id_emocion=_tipo).order_by(asc(EmocionDetectada.fecha_deteccion)).all()
         else:
+
             values: [] = EmocionDetectada.query.filter(
                 EmocionDetectada.fecha_deteccion.between(fecha_ini, fecha_fin)).filter_by(correo=_correo).order_by(
                 asc(EmocionDetectada.fecha_deteccion)).all()
+
         if len(values) == 0:
             return []
         return values
