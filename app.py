@@ -18,6 +18,7 @@ from routes import emocion
 from routes import emocionDetectada
 from routes import neuralNetwork
 from routes import fortaleza
+from routes import estrategia
 
 @app.route('/')
 def hello_world():  # put application's code here

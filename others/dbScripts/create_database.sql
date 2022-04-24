@@ -6,7 +6,9 @@ drop table if exists usuario;
 create table estrategias
 (
     id_estrategia    integer primary key not null default 0,
-    texto_estrategia text                not null default 'no_extrategia'
+    texto_estrategia text                not null default 'no_extrategia',
+    image_name       text                not null default 'no_extrategia'
+
 );
 
 create table tipo_pregunta
@@ -47,9 +49,9 @@ create table usuario
 create table emociones_detectadas
 (
     id_emocion      integer not null default 0,
-    correo          text                not null default 'no_email',
-    id_estrategia   integer             not null default 0,
-    fecha_deteccion integer             not null default 0,
+    correo          text    not null default 'no_email',
+    id_estrategia   integer not null default 0,
+    fecha_deteccion integer not null default 0,
     primary key (id_emocion, correo, id_estrategia, fecha_deteccion),
     constraint emociones_detectadas_usuario_fk
         foreign key (correo) references usuario (correo) on delete cascade on update restrict,
@@ -62,9 +64,9 @@ create table emociones_detectadas
 
 create table fortalezas
 (
-    correo          text                not null default 'no_correo',
-    fortaleza_texto text                not null default 'sin respuesta',
-    primary key ( correo, fortaleza_texto),
+    correo          text not null default 'no_correo',
+    fortaleza_texto text not null default 'sin respuesta',
+    primary key (correo, fortaleza_texto),
     constraint respuestas_usuario_fk
         foreign key (correo) references usuario (correo) on delete cascade on update restrict
 );
@@ -92,10 +94,15 @@ create table respuestas
         foreign key (id_pregunta) references preguntas (id_pregunta) on delete cascade on update restrict
 );
 
-insert into emociones values (0,'Negativo');
-insert into emociones values (1,'Positiva');
 
-insert into estrategias values (1, 'nueva estrategia');
-insert into estrategias values (0, 'nueva estrategiad');
+insert into emociones values (0, 'Negativo');
+insert into emociones values (1, 'Positiva');
+
+insert into estrategias values (0, 'Reparación diafragmática','breath');
+insert into estrategias values (1, 'Mis fortalezas','strenghts');
+insert into estrategias values (2, 'Meditación','metitation');
+insert into estrategias values (3, 'Recordatorios y frases','phrases');
+
+
 
 

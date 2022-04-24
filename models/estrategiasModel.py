@@ -8,10 +8,12 @@ class Estrategia(BaseModel):
     __tablename__ = 'estrategias'
     id_estrategia = db.Column(db.Integer, primary_key=True, autoincrement=True)
     texto_estrategia = db.Column(db.String, default='no_name')
+    image_name = db.Column(db.String, default='no_name')
 
     _default_fields = [
         "id_estrategia",
         "texto_estrategia",
+        "image_name"
     ]
     _hidden_fields = [
     ]
@@ -19,8 +21,8 @@ class Estrategia(BaseModel):
     ]
 
     @staticmethod
-    def new(texto_estrategia: str):
-        emotion: Estrategia = Estrategia(texto_estrategia=texto_estrategia)
+    def new(texto_estrategia: str, imagen_name: str):
+        emotion: Estrategia = Estrategia(texto_estrategia=texto_estrategia, image_name=imagen_name )
         db.session.add(emotion)
         db.session.commit()
 
@@ -39,9 +41,10 @@ class Estrategia(BaseModel):
         return values[0]
 
     @staticmethod
-    def update(_id: int, texto_estrategia: str):
+    def update(_id: int, texto_estrategia: str, imagen_name: str):
         emotion: Estrategia = Estrategia.get_by_id(_id)
         emotion.texto_estrategia = texto_estrategia
+        emotion.image_name = imagen_name
         db.session.commit()
 
     @staticmethod
