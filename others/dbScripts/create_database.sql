@@ -95,13 +95,15 @@ create table respuestas
 );
 
 
-insert into emociones values (0, 'Negativo');
-insert into emociones values (1, 'Positiva');
+
 
 insert into estrategias values (0, 'Reparación diafragmática','breath');
 insert into estrategias values (1, 'Mis fortalezas','strenghts');
 insert into estrategias values (2, 'Meditación','metitation');
 insert into estrategias values (3, 'Recordatorios y frases','phrases');
+
+insert into emociones values (0, 'Negativo');
+insert into emociones values (1, 'Positiva');
 
 
 
