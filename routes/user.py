@@ -38,7 +38,8 @@ def new_usuario():
     Usuario.new(correo, nombre, ap_paterno,
                 ap_materno, password, fecha_nacimiento)
     if Usuario.validate_credentials(correo, password):
-        strengths = [x.replace(" ", "") for x in strengths.strip('[]').split(",")]
+        strengths = [x.replace(" ", "")
+                     for x in strengths.strip('[]').split(",")]
         for strength in strengths:
             Fortalezas.new(correo, strength)
     object_to_return = {
@@ -55,17 +56,17 @@ def new_usuario():
 def get_usuario():
     if request.method != 'GET':
         return {
-                   "message": "Not a get method",
-                   "status": 400
-               }, 400
+            "message": "Not a get method",
+            "status": 400
+        }, 400
     payload: dict = request.args.to_dict()
     correo = payload.get("correo")
     password = payload.get("password")
     if correo is None or password is None:
         return {
-                   "message": "Unable to get params: Expected json with (correo,password)",
-                   "status": 406
-               }, 406
+            "message": "Unable to get params: Expected json with (correo,password)",
+            "status": 406
+        }, 406
     if not Usuario.validate_credentials(correo, password):
         object_to_return = {
             "message": "Unauthorized",
@@ -78,9 +79,12 @@ def get_usuario():
     #current_time = datetime.now().replace(tzinfo=timezone.utc)
     current_time = datetime.now()
     one_week_ago = current_time - timedelta(days=7)
-    current_time = str(current_time.day) + "/" + str(current_time.month) + "/" + str(current_time.year)
-    one_week_ago = str(one_week_ago.day) + "/" + str(one_week_ago.month) + "/" + str(one_week_ago.year)
-    emocionesNegUltimaSem: [] = EmocionDetectada.get_by_period(current_time, one_week_ago, correo, 0)
+    current_time = str(current_time.day) + "/" + \
+        str(current_time.month) + "/" + str(current_time.year)
+    one_week_ago = str(one_week_ago.day) + "/" + \
+        str(one_week_ago.month) + "/" + str(one_week_ago.year)
+    emocionesNegUltimaSem: [] = EmocionDetectada.get_by_period(
+        current_time, one_week_ago, correo, 0)
 
     object_to_return = {
         "contenido": usuario.to_dict(),
@@ -99,9 +103,9 @@ def get_usuario():
 def update_usuario():
     if request.method != 'PUT':
         return {
-                   "message": "Not a put method",
-                   "status": 400
-               }, 400
+            "message": "Not a put method",
+            "status": 400
+        }, 400
 
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
@@ -137,9 +141,9 @@ def update_usuario():
 def update_password():
     if request.method != 'PUT':
         return {
-                   "message": "Not a put method",
-                   "status": 400
-               }, 400
+            "message": "Not a put method",
+            "status": 400
+        }, 400
 
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
@@ -225,14 +229,14 @@ def random_password():
 def login():
     if request.method != 'POST':
         return {
-                   "message": "Not a post method",
-                   "status": 400
-               }, 400
+            "message": "Not a post method",
+            "status": 400
+        }, 400
     if not request.is_json:
         return {
-                   "message": "Not json",
-                   "status": 415
-               }, 415
+            "message": "Not json",
+            "status": 415
+        }, 415
     payload: dict = request.get_json(force=True)
     correo = payload.get("correo")
     password = payload.get("password")
